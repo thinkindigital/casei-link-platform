@@ -2,24 +2,16 @@
 FROM node:18-alpine AS builder
 WORKDIR /app
 
-# Copia os arquivos de manifesto de pacotes
 COPY package.json yarn.lock* package-lock.json* ./
-
-# Instala as dependências
 RUN npm install
-
-# Copia todo o resto do código do projeto
 COPY . .
 
-# REMOVIDO: A forma insegura de passar o token
-# ARG PLASMIC_AUTH_TOKEN
-# ENV PLASMIC_AUTH_TOKEN=${PLASMIC_AUTH_TOKEN}
-
-# ALTERADO: Usando --mount=type=secret para injetar o token de forma segura
-# O segredo 'plasmic_token' será montado em /run/secrets/plasmic_token
-# E o valor será lido e passado como variável de ambiente APENAS para este comando.
+# Segredo via Docker BuildKit (--mount=secret)
 RUN --mount=type=secret,id=plasmic_token \
-    PLASMIC_AUTH_TOKEN=$(cat /run/secrets/plasmic_token) npx plasmic sync --yes
+    --mount=type=secret,id=plasmic_user \
+    PLASMIC_AUTH_TOKEN=$(cat /run/secrets/plasmic_token) \
+    PLASMIC_AUTH_USER=$(cat /run/secrets/plasmic_user) \
+    npx plasmic sync --yes --projects aZkp6uWdCVjDxZx2r6uaCh
 
 # Constrói a aplicação Next.js para produção
 RUN npm run build

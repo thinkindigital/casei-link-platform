@@ -1,5 +1,6 @@
 # Ignorar arquivos de segredos locais
 plasmic.token
+plasmic.user
 
 # Ignorar arquivos de configuração de editores de código (boa prática)
 .vscode/
