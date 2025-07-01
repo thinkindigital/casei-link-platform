@@ -1,0 +1,38 @@
+# Arquivo .gitignore para o projeto Next.js + Plasmic
+
+# Dependências
+# A pasta mais importante a ser ignorada.
+/node_modules
+
+# Arquivos de Build
+# Gerados pelo Next.js durante o processo de build.
+/.next/
+/out/
+
+# Arquivos de Ambiente
+# Nunca cometer arquivos com senhas ou chaves de API!
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Arquivos de cache do Plasmic
+# Contém dados em cache que não precisam ser versionados.
+.plasmic/cache
+
+# Logs
+# Arquivos de log gerados durante a execução ou debug.
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos gerados pelo sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de configuração de editores de código
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
