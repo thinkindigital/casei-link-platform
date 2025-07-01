@@ -24,15 +24,16 @@ O objetivo é criar uma solução moderna para convites de casamento digitais qu
 
 ## 2. 🛠️ Stack Tecnológica
 
-| Componente         | Ferramenta/Função                                  |
-| ------------------ | -------------------------------------------------- |
-| **Infraestrutura** | VPS com Docker Swarm, orquestrado via Portainer    |
-| **Proxy Reverso**  | Traefik (roteamento + SSL automático via ACME)     |
-| **CMS Headless**   | Strapi (via Docker, banco MySQL/Percona)           |
-| **Frontend PWA**   | Next.js (React Framework), integrado com Plasmic   |
-| **Design Visual**  | Plasmic (integração via CLI/API)                   |
-| **CI/CD**          | GitHub Actions (build, push e deploy automatizado) |
-| **Encurtador**     | Shlink (servindo o domínio `casei.link`)           |
+| Componente         | Ferramenta / Função                                      |
+|--------------------|-----------------------------------------------------------|
+| **Infraestrutura** | VPS com Docker Swarm, gerenciamento via Portainer         |
+| **Proxy Reverso**  | Traefik (roteamento + SSL via Let's Encrypt/ACME)         |
+| **CMS Headless**   | Strapi (contêinerizado, com banco PostgreSQL ou Percona)  |
+| **Frontend PWA**   | Next.js (React), com suporte a SSG e integração com Plasmic|
+| **Design Visual**  | Plasmic (sistema visual de design, integrado via CLI/API) |
+| **CI/CD**          | GitHub Actions (build, push, deploy via Docker Swarm)     |
+| **Encurtador**     | Shlink (servido no domínio casei.link)                  |
+| **Gerenciamento**  | Portainer (interface web para controle de stacks)         |
 
 ---
 
@@ -66,14 +67,13 @@ flowchart LR
 | -------------------- | -------------------------------------------------------- |
 | `casei.link`         | Encurtador principal (Shlink), serve os links curtos     |
 | `convite.casei.link` | Hospedagem dos convites PWA (frontend + dados)           |
-| `cms.casei.link`     | Acesso ao painel administrativo do Strapi                |
+| `cms.casei.link`     | Acesso ao painel administrativo do Strapi Já no servidor               |
 | `api.casei.link`     | (Reserva futura) API pública REST/GraphQL                |
-| `cv.casei.link`      | (Descontinuado – função absorvida por `casei.link`)      |
 | `casei.shop`         | (Reservado) Futuro uso para vendas, marketplace e extras |
 
 ---
 
-## 5. 📁 Estrutura do Repositório
+## 5. 📁 Ideia de Estrutura do Repositório
 
 ```
 project-root/
@@ -102,12 +102,6 @@ project-root/
 
 ---
 
-## 7. 🧩 Integração com IA (Gemini & ChatGPT)
-
-> Este projeto está documentado de forma a permitir colaboração entre IAs (ChatGPT-4o, Gemini 2.5 Pro). As decisões técnicas e estrutura de arquivos são redigidas para interpretação clara por modelos generativos e outros engenheiros.
-
----
-
 ## 📌 Anexos
 
 * `docs/dominios.md`: Estratégia completa de nomes de domínio
@@ -117,4 +111,4 @@ project-root/
 ---
 
 > **Licença:** Projeto fechado – desenvolvimento privado e controlado
-> **Contato:** (11) 99319-3118 -> WhatsApp
+> **Contato:** Leonardo Nascimento - (11) 99319-3118 WhatsApp
